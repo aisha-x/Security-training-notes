@@ -1,5 +1,1 @@
-# THM 
-
-
-This repo contains walkthroughs and detailed explanations for various 
-rooms and challenges I completed on [TryHackMe](https://tryhackme.com) platform. 
+Hands-on cybersecurity training notes and labs from TryHackMe, LetsDefend, and other learning platforms. Focused on blue team, threat analysis, and defensive security skills.
