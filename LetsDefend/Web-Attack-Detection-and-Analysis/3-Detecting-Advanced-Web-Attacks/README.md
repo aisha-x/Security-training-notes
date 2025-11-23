@@ -2,12 +2,12 @@
 
 Table of Contents: 
 
-- **Introduction to Detecting Advanced Web Attacks**
-- **Detecting SSTI Attacks**
-- **Detecting ELI Attacks**
-- **Detecting HTTP Header Injection Attacks**
-- **Detecting Server-Side Request Forgery Attacks**
-- **Detecting NoSQL Injection Attacks**
+- [Introduction to Detecting Advanced Web Attacks](#introduction-to-detecting-advanced-web-attacks)
+- [Detecting SSTI Attacks](#detecting-ssti-attacks)
+- [Detecting ELI Attacks](#detecting-eli-attacks)
+- [Detecting HTTP Header Injection Attacks](#detecting-http-header-injection-attacks)
+- [Detecting Server-Side Request Forgery Attacks](#detecting-server-side-request-forgery-attacks)
+- [Detecting NoSQL Injection Attacks](#detecting-nosql-injection-attacks)
 
 # **Introduction to Detecting Advanced Web Attacks**
 
@@ -250,7 +250,7 @@ ET /product?message={{ ''.__class__.__mro__[2].__subclasses__()[40]('/etc/passwd
 
 *Ans:144.87.91.181*
 
-# Detecting Expression Language Injection(ELI)
+# Detecting ELI Attacks
 
 An **Expression Language (EL)** is a small language embedded in templates, JSP/JSF pages, configuration files, or frameworks (e.g., JSP EL, Unified EL, Spring EL). It lets developers evaluate expressions at runtime to pull values, call methods, access scopes (request/session/application), and manipulate data.
 
@@ -647,7 +647,7 @@ The header Referer was used to inject another header that will execute XSS paylo
 
 *Ans: XSS*
 
-# Detecting SSRF
+# Detecting Server-Side Request Forgery Attacks
 
 ## Understanding SSRF
 
@@ -1019,7 +1019,7 @@ root@ip-172-31-45-90:~/Desktop/QuestionFiles# grep -P --color=always -n '(?:169\
 
 *Ans: 29/Oct/2015:23:38:45*
 
-# Detecting NOSQL Injection Attack
+# Detecting NoSQL Injection Attacks
 
 ## **What is NoSQL?**
 
