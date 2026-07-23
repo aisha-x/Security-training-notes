@@ -7,7 +7,6 @@
 
 **Web reconnaissance** is the foundational phase of a security assessment and a key part of the **Information Gathering** stage in penetration testing. Its purpose is to systematically collect information about a target web application or website before deeper analysis or exploitation begins.
 
-![image.png](attachment:f4db8770-079f-4417-b614-a12d98cc20f6:image.png)
 
 ### **Main Objectives of Web Reconnaissance**
 
