@@ -1,5 +1,7 @@
 # Attacking GraphQL module
 
+Module Link: https://academy.hackthebox.com/app/module/271
+
 This module covers common misconfigurations and security vulnerabilities that arise in GraphQL APIs.
 
 In more detail, this module covers the following:
